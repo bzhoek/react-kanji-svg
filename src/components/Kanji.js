@@ -8,7 +8,7 @@ class Kanji extends PureComponent {
     if (index < elements.length) {
       let element = elements[index]
       const length = element.getTotalLength()
-      element.style = `stroke-dasharray: ${length};stroke-dashoffset: ${length};`
+      element.style = `stroke-dasharray: ${length};stroke-dashoffset: ${length}; animation: dash ${length/40}s linear forwards;`
       element.addEventListener('animationend', () => {
         this.animate(elements, index + 1)
       })
