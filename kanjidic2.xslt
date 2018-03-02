@@ -14,9 +14,14 @@
 
   <xsl:template match="character">
     <xsl:text>{</xsl:text>
-    <xsl:apply-templates select="literal"/><xsl:text>,</xsl:text>
+    <xsl:apply-templates select="literal"/>
+    <xsl:text>,</xsl:text>
     <xsl:apply-templates select="codepoint/cp_value[@cp_type='ucs']"/>
-    <xsl:text>},</xsl:text><xsl:value-of select="$newline"/>
+    <xsl:text>}</xsl:text>
+    <xsl:if test="position() != last()">
+      <xsl:text>,</xsl:text>
+    </xsl:if>
+    <xsl:value-of select="$newline"/>
   </xsl:template>
 
   <xsl:template match="cp_value[@cp_type='ucs']">
