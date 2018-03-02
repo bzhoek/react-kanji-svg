@@ -15,7 +15,12 @@
   <xsl:template match="character">
     <xsl:text>{</xsl:text>
     <xsl:apply-templates select="literal"/>
-    <xsl:text>,</xsl:text>
+    <xsl:apply-templates select="misc/jlpt"/>
+    <xsl:apply-templates select="misc/freq"/>
+    <xsl:text>"meaning": [</xsl:text>
+    <xsl:apply-templates select="reading_meaning/rmgroup/meaning[not(@m_lang)]"/>
+    <xsl:text>], </xsl:text>
+
     <xsl:apply-templates select="codepoint/cp_value[@cp_type='ucs']"/>
     <xsl:text>}</xsl:text>
     <xsl:if test="position() != last()">
@@ -24,12 +29,19 @@
     <xsl:value-of select="$newline"/>
   </xsl:template>
 
+  <xsl:template match="meaning[not(@m_lang)]">
+    <xsl:text>"</xsl:text><xsl:value-of select="translate(text(), '&quot;', '`')"/><xsl:text>"</xsl:text>
+    <xsl:if test="position() != last()">
+      <xsl:text>,</xsl:text>
+    </xsl:if>
+  </xsl:template>
+
   <xsl:template match="cp_value[@cp_type='ucs']">
     <xsl:text>"unicode": "</xsl:text><xsl:value-of select="text()"/><xsl:text>"</xsl:text>
   </xsl:template>
 
   <xsl:template match="*">
-    <xsl:text>"</xsl:text><xsl:value-of select="name()"/><xsl:text>": "</xsl:text><xsl:value-of select="text()"/><xsl:text>"</xsl:text>
+    <xsl:text>"</xsl:text><xsl:value-of select="name()"/><xsl:text>": "</xsl:text><xsl:value-of select="text()"/><xsl:text>", </xsl:text>
   </xsl:template>
 
 </xsl:stylesheet>
