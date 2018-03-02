@@ -3,9 +3,7 @@
   <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes" omit-xml-declaration="yes"/>
 
   <xsl:template match="comment()">
-    <xsl:copy>
-      <xsl:apply-templates/>
-    </xsl:copy>
+    <xsl:apply-templates/>
   </xsl:template>
 
   <xsl:template match="*">
