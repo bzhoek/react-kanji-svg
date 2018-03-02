@@ -1,10 +1,18 @@
+# Getting Started
 
-http://www.edrdg.org/kanjidic/kanjd2index.html
-https://github.com/KanjiVG/kanjivg
+Generate clean SVG files from https://github.com/KanjiVG/kanjivg 
 
-https://www.bjelic.net/2012/08/01/coding/convert-xml-to-json-using-xslt/
+    for f in ~/github/kanjivg/kanji/?????.svg; do xsltproc -v -nonet kanjisvg.xslt $f > "svg/`basename $f`"; done
+
+Transform http://www.edrdg.org/kanjidic/kanjd2index.html to JSON
 
     $ xsltproc kanjidic2.xslt kanjidic2.xml > kanjidic2.json
+    
+Add SVG content to kanjidic2.json with
+
+    $ npx babel add-svg.js --presets=es2015 --out-file dist/add-svg.js; node dist/add-svg.js
+
+https://www.bjelic.net/2012/08/01/coding/convert-xml-to-json-using-xslt/
 
 ## ES6 from command-line
 
@@ -15,3 +23,8 @@ https://www.bjelic.net/2012/08/01/coding/convert-xml-to-json-using-xslt/
 ## Animation
 
 https://css-tricks.com/svg-line-animation-works/
+
+## Clean SVG
+
+    xsltproc -v -nonet kanjisvg.xslt src/09a13.svg > src/09a13-clean.svg
+    for f in ?????.svg; do echo "$f"; done
