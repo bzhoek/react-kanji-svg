@@ -1,5 +1,10 @@
 # See https://help.github.com/ignore-files/ for more about ignoring files.
 
+/dist
+/svg
+kanjidic2.json
+kanji-svg.json
+
 # dependencies
 /node_modules
 
