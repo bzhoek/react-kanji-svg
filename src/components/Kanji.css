@@ -7,3 +7,40 @@
 #grid line {
   stroke: red;
 }
+
+#kanji svg {
+  width: 180px !important;
+  height: 180px !important;
+}
+
+#kanji path {
+  fill: none;
+  stroke: #000000;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+#kanji text {
+  font-size: 8px;
+  fill: #808080;
+  display: none;
+}
+
+#kanji .draw {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: dash 10s linear forwards;
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/*@keyframes dash {*/
+/*to {*/
+/*stroke-dashoffset: 0;*/
+/*}*/
+/*}*/
