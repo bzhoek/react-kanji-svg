@@ -19,6 +19,7 @@
   stroke-width: 3;
   stroke-linecap: round;
   stroke-linejoin: round;
+  display: none;
 }
 
 #kanji text {
@@ -28,9 +29,10 @@
 }
 
 #kanji .draw {
-  stroke-dasharray: 1000;
-  stroke-dashoffset: 1000;
-  animation: dash 10s linear forwards;
+  display: block;
+  stroke-dasharray: 180;
+  stroke-dashoffset: 180;
+  animation: dash 1s linear forwards;
 }
 
 @keyframes dash {
