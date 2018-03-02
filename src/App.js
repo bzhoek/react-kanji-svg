@@ -6,7 +6,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Kanji size={180}/>
+        <Kanji grid={9} size={180}/>
       </div>
     );
   }

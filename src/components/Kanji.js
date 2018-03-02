@@ -2,16 +2,23 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import './Kanji.css'
 
-const Kanji = ({size}) => {
+const Kanji = ({grid, size}) => {
+
+  const slices = Math.sqrt(grid)
+
+  const renderRecipe = (index) => {
+    let number = (index + 1) * 90 / slices
+    return <g key={number}>
+      <line x1={number} y1="0" x2={number} y2="90"/>
+      <line x1="0" y1={number} x2="90" y2={number}/>
+    </g>
+  }
 
   return (
     <div>
       <object id="grid">
         <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 90 90">
-          <line x1="30" y1="0" x2="30" y2="90"/>
-          <line x1="60" y1="0" x2="60" y2="90"/>
-          <line x1="0" y1="30" x2="90" y2="30"/>
-          <line x1="0" y1="60" x2="90" y2="60"/>
+          {Array.from(Array(slices - 1).keys()).map(renderRecipe)}
         </svg>
       </object>
       <object id="kanji">
@@ -29,6 +36,7 @@ const Kanji = ({size}) => {
 }
 
 Kanji.propTypes = {
+  grid: PropTypes.number.isRequired,
   size: PropTypes.number.isRequired,
 }
 
