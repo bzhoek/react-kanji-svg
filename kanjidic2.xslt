@@ -17,7 +17,7 @@
     <xsl:apply-templates select="literal"/>
     <xsl:apply-templates select="misc/jlpt"/>
     <xsl:apply-templates select="misc/freq"/>
-    <xsl:text>"meaning": [</xsl:text>
+    <xsl:text>"meanings": [</xsl:text>
     <xsl:apply-templates select="reading_meaning/rmgroup/meaning[not(@m_lang)]"/>
     <xsl:text>], </xsl:text>
 
