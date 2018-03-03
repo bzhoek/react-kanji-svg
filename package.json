@@ -5,12 +5,24 @@
   "dependencies": {
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-scripts": "1.1.1"
+    "react-scripts": "1.1.1",
+    "realm": "^2.2.12",
+    "save-dev": "^2.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "babel": "babel -w add-svg.js --presets=es2015 --out-file dist/add-svg.js",
+
+    "transform": "xsltproc kanjidic2.xslt kanjidic2.xml > kanjidic2.json",
+    "clean": "for f in ~/github/kanjivg/kanji/?????.svg; do xsltproc -v -nonet kanjisvg.xslt $f > \"svg/`basename $f`\"; done",
+    "merge": "node dist/add-svg.js"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1"
   }
 }
