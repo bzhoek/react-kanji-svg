@@ -33,13 +33,13 @@ class Kanji extends PureComponent {
     }
 
     return (
-      <div>
-        <object id="grid">
+      <div id="kanji">
+        <object className="grid">
           <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 90 90">
             {Array.from(Array(slices - 1).keys()).map(renderRecipe)}
           </svg>
         </object>
-        <object id="kanji" dangerouslySetInnerHTML={{"__html": svg}}>
+        <object className="strokes" dangerouslySetInnerHTML={{"__html": svg}}>
         </object>
       </div>
     )

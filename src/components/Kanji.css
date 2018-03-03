@@ -1,19 +1,24 @@
-#grid, #kanji {
+.grid, .strokes {
   position: absolute;
-  left: 50px;
-  top: 50px;
+  left: 0;
+  top: 0;
 }
 
-#grid line {
+.grid line {
   stroke: red;
 }
 
-#kanji svg {
+#kanji {
+  position: relative;
+  height: 180px;
+}
+
+.strokes svg {
   width: 180px !important;
   height: 180px !important;
 }
 
-#kanji path {
+.strokes path {
   fill: none;
   stroke: #000000;
   stroke-width: 3;
@@ -22,13 +27,13 @@
   display: none;
 }
 
-#kanji text {
+.strokes text {
   font-size: 8px;
   fill: #808080;
   display: none;
 }
 
-#kanji .draw {
+.strokes .draw {
   display: block;
   stroke-dasharray: 180;
   stroke-dashoffset: 180;
