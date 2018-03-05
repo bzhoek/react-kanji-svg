@@ -4,17 +4,35 @@ import Meanings from './components/Meanings'
 import './App.css';
 import json from './kanji-svg'
 
-// const svg = json.filter(c => c.unicode ==='9022')
-const svg = json.filter(c => c.literal === '風')
-let kanji = svg[0]
-console.log(kanji)
-
 class App extends Component {
+
+  constructor() {
+    super()
+    this.state = {
+      kanji: this.find('験')
+    }
+  }
+
+  find(literal) {
+    return json.filter(c => c.literal === literal).shift()
+  }
+
+  onChange() {
+    let kanji = this.find(this.textInput.value)
+    if (kanji) {
+      this.setState({
+        kanji: kanji
+      })
+    }
+  }
+
   render() {
     return (
       <div className="App">
-        <Kanji grid={9} size={180} svg={kanji.svg}/>
-        <Meanings literal={kanji.literal} meanings={kanji.meanings}/>
+        <input type="text" ref={input => this.textInput = input} onChange={this.onChange.bind(this)}/>
+        <Kanji grid={9} size={180} svg={this.state.kanji.svg}/>
+        <p>N{this.state.kanji.jlpt}, {this.state.kanji.freq}</p>
+        <Meanings literal={this.state.kanji.literal} meanings={this.state.kanji.meanings}/>
       </div>
     );
   }

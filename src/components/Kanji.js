@@ -20,6 +20,10 @@ class Kanji extends PureComponent {
     this.animate(document.body.querySelectorAll('path'), 0)
   }
 
+  componentDidUpdate() {
+    this.animate(document.body.querySelectorAll('path'), 0)
+  }
+
   render() {
     const {grid, size, svg} = this.props
     const slices = Math.sqrt(grid)
