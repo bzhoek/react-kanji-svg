@@ -10,7 +10,8 @@ Kanji.schema = {
   properties: {
     unicode: 'string',
     literal: 'string',
-    drawing: 'string'
+    meaning: 'string',
+    drawing: 'string',
   },
 };
 
@@ -35,6 +36,7 @@ realm.write(() => {
     realm.create('Kanji', {
       unicode: kanji.unicode,
       literal: kanji.literal,
+      meaning: kanji.meanings.join(' '),
       drawing: svg
     })
   })
