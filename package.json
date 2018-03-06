@@ -18,7 +18,8 @@
 
     "transform": "xsltproc kanjidic2.xslt kanjidic2.xml > kanjidic2.json",
     "clean": "for f in ~/github/kanjivg/kanji/?????.svg; do xsltproc -v -nonet kanjisvg.xslt $f > \"svg/`basename $f`\"; done",
-    "merge": "node dist/add-svg.js"
+    "merge": "node dist/add-svg.js",
+    "import": "rm rm -rf default.realm*; node dist/realm-import.js"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
