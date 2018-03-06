@@ -8,7 +8,7 @@ Kanji.schema = {
   name: 'Kanji',
   primaryKey: 'unicode',
   properties: {
-    unicode: 'string',
+    unicode: {type: 'string', indexed: true},
     literal: 'string',
     meaning: 'string',
     drawing: 'string',
