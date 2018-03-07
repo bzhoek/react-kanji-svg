@@ -4,24 +4,30 @@ import './Kanji.css'
 
 class Kanji extends PureComponent {
 
-  animate(elements, index) {
+  animatePathAt(elements, index) {
     if (index < elements.length) {
       let element = elements[index]
       const length = element.getTotalLength()
       element.style = `stroke-dasharray: ${length};stroke-dashoffset: ${length}; animation: dash ${length / 40}s linear forwards;`
       element.addEventListener('animationend', () => {
-        this.animate(elements, index + 1)
+        this.animatePathAt(elements, index + 1)
       })
       element.classList.add('draw')
     }
   }
 
+  animateDrawing() {
+    let paths = document.body.querySelectorAll('path')
+    paths.forEach((element) => element.classList.remove('draw'))
+    this.animatePathAt(paths, 0)
+  }
+
   componentDidMount() {
-    this.animate(document.body.querySelectorAll('path'), 0)
+    this.animateDrawing()
   }
 
   componentDidUpdate() {
-    this.animate(document.body.querySelectorAll('path'), 0)
+    this.animateDrawing()
   }
 
   render() {
