@@ -13,10 +13,6 @@ class App extends Component {
     }
   }
 
-  find(literal) {
-    return json.filter(c => c.literal === literal).shift()
-  }
-
   onChange() {
     let kanji = this.find(this.textInput.value)
     if (kanji) {
@@ -24,6 +20,26 @@ class App extends Component {
         kanji: kanji
       })
     }
+  }
+
+  find(text) {
+    let kanji = this.filterLiteral(text)
+    if (kanji.length) {
+      return kanji.shift()
+    } else {
+      let kanji = this.filterMeaning(text)
+      if (kanji.length) {
+        return kanji.shift()
+      }
+    }
+  }
+
+  filterLiteral(literal) {
+    return json.filter(c => c.literal === literal)
+  }
+
+  filterMeaning(text) {
+    return json.filter(c => c.meanings.some(m => m === text))
   }
 
   render() {
