@@ -4,14 +4,30 @@ import './Kanji.css'
 
 class Kanji extends PureComponent {
 
+  constructor(props) {
+    super(props)
+
+    this.listeners = []
+  }
+
   animatePathAt(elements, index) {
     if (index < elements.length) {
       let element = elements[index]
       const length = element.getTotalLength()
       element.style = `stroke-dasharray: ${length};stroke-dashoffset: ${length}; animation: dash ${length / 40}s linear forwards;`
-      element.addEventListener('animationend', () => {
-        this.animatePathAt(elements, index + 1)
-      })
+      if (this.listeners.indexOf(element) === -1) {
+        this.listeners.push(element)
+        element.addEventListener('animationend', () => {
+          let next = index + 1
+          if (next < elements.length) {
+            this.animatePathAt(elements, index + 1)
+          } else {
+            setTimeout(function () {
+              this.animateDrawing();
+            }.bind(this), 1000);
+          }
+        })
+      }
       element.classList.add('draw')
     }
   }
@@ -25,6 +41,8 @@ class Kanji extends PureComponent {
   componentDidMount() {
     this.animateDrawing()
   }
+
+  // TODO: remove listeners on unmount
 
   componentDidUpdate() {
     this.animateDrawing()
