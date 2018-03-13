@@ -2,7 +2,7 @@ import React from 'react'
 
 const Meanings = ({literal, meanings}) => {
   const renderMeaning = (meaning) => {
-    return <dd>{meaning}</dd>
+    return <dd key={meaning}>{meaning}</dd>
   }
 
   return (
