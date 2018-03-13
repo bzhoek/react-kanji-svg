@@ -14,6 +14,14 @@
 
 https://www.bjelic.net/2012/08/01/coding/convert-xml-to-json-using-xslt/
 
+## Frequency
+
+[Japanese Wikipedia frequency thread](https://forum.koohii.com/thread-3216.html) and [results](https://docs.google.com/spreadsheets/d/1LRRK09PsneshnqP8-mvwvFjYGr2EsSWK_69RYwIFEzo/edit#gid=0).  
+
+[Kyōiku kanji](https://en.wikipedia.org/wiki/Ky%C5%8Diku_kanji) are the first 1,006 kanji taught in primary school. These are from the Jōyō [list](https://en.wikipedia.org/wiki/J%C5%8Dy%C5%8D_kanji) created by the Japanese Ministery of Education.
+
+Excluding [names](https://www.reddit.com/r/LearnJapanese/comments/2s55tz/3002_most_used_kanji_makes_up_95_of_whats_in/cnmcasw/) 50% [comprehension](http://web.archive.org/web/20080919234047/http://nozaki-lab.ics.aichi-edu.ac.jp/nozaki/asahi/kanji.html).
+
 ## Navigation
 
 https://medium.com/@pshrmn/a-simple-react-router-v4-tutorial-7f23ff27adf
