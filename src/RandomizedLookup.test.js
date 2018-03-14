@@ -17,8 +17,6 @@ describe('random numbers', () => {
   })
 
   it('cycles', () => {
-    const ONE_DAY = 1000 * 60 * 60 * 24
-    const date = new Date(2018, 0, 28)
-    expect(Math.round(date.getTime() / ONE_DAY) % count).toBe(21)
+    expect(subject.forDay(new Date(2018, 0, 28))).toBe(21)
   })
 })
