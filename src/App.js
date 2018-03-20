@@ -52,7 +52,7 @@ class App extends Component {
   }
 
   filterMeaning(text) {
-    return json.filter(c => c.meanings.some(m => m === text))
+    return json.filter(c => c.meanings.some(m => m.toLowerCase() === text))
   }
 
   onPrevious() {
