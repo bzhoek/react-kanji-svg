@@ -9,6 +9,7 @@ Kanji.schema = {
   primaryKey: 'unicode',
   properties: {
     unicode: {type: 'string', indexed: true},
+    frequency: {type: 'int', indexed: true},
     literal: 'string',
     meaning: 'string',
     drawing: 'string',
@@ -35,6 +36,7 @@ realm.write(() => {
 
     realm.create('Kanji', {
       unicode: kanji.unicode,
+      frequency: parseInt(kanji.freq) || 0,
       literal: kanji.literal,
       meaning: kanji.meanings.join(' '),
       drawing: svg
