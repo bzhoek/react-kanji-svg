@@ -1,22 +1,6 @@
 import fs from 'fs'
-import Realm from 'realm'
+import realm from './src/kanjis'
 
-class Kanji {
-}
-
-Kanji.schema = {
-  name: 'Kanji',
-  primaryKey: 'unicode',
-  properties: {
-    unicode: {type: 'string', indexed: true},
-    frequency: {type: 'int', indexed: true},
-    literal: 'string',
-    meaning: 'string',
-    drawing: 'string',
-  },
-};
-
-const realm = new Realm({schema: [Kanji]})
 console.log(new Date())
 // Realm.open({schema: [Kanji]}).then(realm => {
 

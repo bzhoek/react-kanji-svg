@@ -15,8 +15,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "babel": "babel -w --presets=es2015 *.js --out-dir dist",
-
+    "babel": "babel -w --presets=es2015 *.js src/kanjis.js --out-dir dist",
     "transform": "xsltproc kanjidic2.xslt kanjidic2.xml > kanjidic2.json",
     "clean": "for f in ~/github/kanjivg/kanji/?????.svg; do xsltproc -v -nonet kanjisvg.xslt $f > \"svg/`basename $f`\"; done",
     "merge": "node dist/add-svg.js",
