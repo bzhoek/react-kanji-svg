@@ -8,7 +8,8 @@
     "react-scripts": "1.1.1",
     "realm": "^2.2.12",
     "save-dev": "^2.0.0",
-    "seedrandom": "^2.4.3"
+    "seedrandom": "^2.4.3",
+    "sqlite3": "^4.0.2"
   },
   "scripts": {
     "start": "react-scripts start",
