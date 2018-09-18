@@ -5,6 +5,7 @@ var db = new sqlite.Database('kanji.sqlite');
 
 db.serialize(function () {
   db.run("CREATE TABLE Kanji (unicode TEXT PRIMARY KEY, frequency INTEGER, literal TEXT, meaning TEXT, drawing TEXT)");
+  db.run("CREATE VIRTUAL TABLE Search USING fts4(unicode TEXT, frequency INTEGER, literal TEXT, meaning TEXT, drawing TEXT, notindexed=drawing)");
 
   let kanjis = JSON.parse(fs.readFileSync('kanjidic2.json', 'utf-8'))
   kanjis.forEach((kanji, index) => {
@@ -14,17 +15,12 @@ db.serialize(function () {
     try {
       let svg = fs.readFileSync(file, 'utf-8')
       db.run("INSERT INTO Kanji VALUES (?, ?, ?, ? ,?)", kanji.unicode, parseInt(kanji.freq), kanji.literal, kanji.meanings.join(', '), svg)
+      db.run("INSERT INTO Search VALUES (?, ?, ?)", kanji.unicode, kanji.literal, kanji.meanings.join(', '))
     } catch (err) {
       console.log(`${file} is missing.`)
     }
 
   })
-
-  // var stmt = db.prepare("INSERT INTO Kanji VALUES (?, ?, ?, ? ,?)");
-  // for (var i = 0; i < 10; i++) {
-  //   stmt.run("Ipsum " + i, i, "literal", "meaning", "drawing");
-  // }
-  // stmt.finalize();
 
   db.each("SELECT rowid AS id, * FROM Kanji", function (err, row) {
     console.log(row.id + ": " + row.unicode + ", " + row.literal);
