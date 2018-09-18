@@ -44,3 +44,9 @@ https://css-tricks.com/svg-line-animation-works/
 
     xsltproc -v -nonet kanjisvg.xslt src/09a13.svg > src/09a13-clean.svg
     for f in ?????.svg; do echo "$f"; done
+
+## SQLite
+
+    $ yarn babel
+    $ time node dist/sqlite-import.js
+    
