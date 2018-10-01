@@ -15,7 +15,7 @@ db.serialize(function () {
     try {
       let svg = fs.readFileSync(file, 'utf-8')
       db.run("INSERT INTO Kanji VALUES (?, ?, ?, ? ,?)", kanji.unicode, parseInt(kanji.freq), kanji.literal, kanji.meanings.join(', '), svg)
-      db.run("INSERT INTO Search VALUES (?, ?, ?)", kanji.unicode, kanji.literal, kanji.meanings.join(', '))
+      db.run("INSERT INTO Search VALUES (?, ?, ?, ?, ?)", kanji.unicode, parseInt(kanji.freq), kanji.literal, kanji.meanings.join(', '), svg)
     } catch (err) {
       console.log(`${file} is missing.`)
     }
