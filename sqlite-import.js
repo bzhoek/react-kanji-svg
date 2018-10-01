@@ -5,6 +5,7 @@ var db = new sqlite.Database('kanji.sqlite');
 
 db.serialize(function () {
   db.run("CREATE TABLE Kanji (unicode TEXT PRIMARY KEY, frequency INTEGER, literal TEXT, meaning TEXT, drawing TEXT)");
+  db.run("CREATE UNIQUE INDEX idx_frequency on Kanji(frequency)");
   db.run("CREATE VIRTUAL TABLE Search USING fts4(unicode TEXT, frequency INTEGER, literal TEXT, meaning TEXT, drawing TEXT, notindexed=drawing)");
 
   let kanjis = JSON.parse(fs.readFileSync('kanjidic2.json', 'utf-8'))
