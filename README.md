@@ -1,13 +1,13 @@
 # Getting Started
 
-`yarn clean` - generate clean SVG files from https://github.com/KanjiVG/kanjivg 
+`yarn clean` - generate clean SVG files from https://github.com/KanjiVG/kanjivg
 
     for f in ~/github/kanjivg/kanji/?????.svg; do xsltproc -v -nonet kanjisvg.xslt $f > "svg/`basename $f`"; done
 
 `yarn transform` - transform http://www.edrdg.org/kanjidic/kanjd2index.html to JSON
 
     $ xsltproc kanjidic2.xslt kanjidic2.xml > kanjidic2.json
-    
+
 `yarn merge` - add SVG content to kanjidic2.json with
 
     $ npx babel add-svg.js --presets=es2015 --out-file dist/add-svg.js; node dist/add-svg.js
@@ -49,4 +49,31 @@ https://css-tricks.com/svg-line-animation-works/
 
     $ yarn babel
     $ time node dist/sqlite-import.js
-    
+
+## Kleuren
+
+    $ xsltproc -v -nonet kanjistyle.xslt kanji.svg > sample.svg; mogrify -format png sample.svg; open sample.png
+
+E8ECFB
+D9CCE3
+CAACCB
+BA8DB4
+AA6F9E
+994F88
+882E72
+1965B0
+437DBF
+6195CF
+7BAFDE
+4EB265
+90C987
+CAE0AB
+F7F056
+F7CB45
+F4A736
+EE8026
+E65518
+DC050C
+A5170E
+72190E
+42150A
