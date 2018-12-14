@@ -39,22 +39,22 @@
               stroke: #882E72;
             }
             #stroke-8 {
-              stroke: #1965B0;
-            }
-            #stroke-9 {
-              stroke: #437DBF;
-            }
-            #stroke-10 {
-              stroke: #6195CF;
-            }
-            #stroke-11 {
               stroke: #7BAFDE;
             }
+            #stroke-9 {
+              stroke: #6195CF;
+            }
+            #stroke-10 {
+              stroke: #437DBF;
+            }
+            #stroke-11 {
+              stroke: #1965B0;
+            }
             #stroke-12 {
-              stroke: #4EB265;
+              stroke: #CAE0AB;
             }
             #stroke-13 {
-              stroke: #90C987;
+              stroke: #4EB265;
             }
           ]]>
         </style>

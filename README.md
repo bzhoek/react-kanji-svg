@@ -52,28 +52,28 @@ https://css-tricks.com/svg-line-animation-works/
 
 ## Kleuren
 
-    $ xsltproc -v -nonet kanjistyle.xslt kanji.svg > sample.svg; mogrify -format png sample.svg; open sample.png
+    $ xsltproc -nonet kanjistyle.xslt kanji.svg > sample.svg; mogrify -format png sample.svg; open sample.png
 
-E8ECFB
-D9CCE3
-CAACCB
-BA8DB4
-AA6F9E
-994F88
-882E72
-1965B0
-437DBF
-6195CF
-7BAFDE
-4EB265
-90C987
-CAE0AB
-F7F056
-F7CB45
-F4A736
-EE8026
-E65518
-DC050C
-A5170E
-72190E
-42150A
+    A    E8ECFB
+    B    D9CCE3
+    C    CAACCB
+    D    BA8DB4
+    E    AA6F9E
+    F    994F88
+    G    882E72
+    K    7BAFDE
+    J    6195CF
+    I    437DBF
+    H    1965B0
+    N    CAE0AB
+    L    4EB265
+    M    90C987
+    O    F7F056
+    P    F7CB45
+    Q    F4A736
+    R    EE8026
+    S    E65518
+    T    DC050C
+    U    A5170E
+    V    72190E
+    W    42150A
