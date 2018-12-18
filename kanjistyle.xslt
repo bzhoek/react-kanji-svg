@@ -4,12 +4,11 @@
 
 
   <xsl:template match="svg">
-    <xsl:copy>
-      <xsl:copy-of select="@*"/>
+    <svg width="240" height="240" viewBox="0 0 109 109">
       <style type="text/css">
         <![CDATA[
           text {
-            font: 12pt sans-serif;
+            font: 8pt sans-serif;
             stroke-width: 0pt;
             fill: #000000;
           }
@@ -17,6 +16,7 @@
             stroke: #00bb00;
             stroke-width: 4pt;
             fill:   #ffffff;
+            fill-opacity: 0;
           }
           #stroke-1 {
             stroke: #E8ECFB;
@@ -60,7 +60,7 @@
         ]]>
       </style>
       <xsl:apply-templates/>
-    </xsl:copy>
+    </svg>
   </xsl:template>
 
   <xsl:template match="path|text">
