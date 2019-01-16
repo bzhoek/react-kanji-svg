@@ -2,6 +2,7 @@
 
 UNICODE=$(sqlite3 kanji.sqlite "select unicode from Kanji where literal='$1'")
 MEANING=$(sqlite3 kanji.sqlite "select meaning from Kanji where literal='$1'")
+ONYOMI=$(sqlite3 kanjidic.sqlite "select onyomi from Kanji where kanji='$1'")
 
 SVG='anki.kanji.svg'
 STYLED='anki.styled.svg'
@@ -48,7 +49,7 @@ cat > anki.add.json <<- EOM
       "fields": {
         "nederlands": "${MEANING}",
         "kanji": "${1}",
-        "on": "",
+        "on": "${ONYOMI}",
         "notes": "",
         "strokes": "<img src=\"${UNICODE}.png\" />"
       },
