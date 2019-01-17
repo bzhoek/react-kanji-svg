@@ -55,7 +55,37 @@
             stroke: #CAE0AB;
           }
           #stroke-13 {
+            stroke: #90C987;
+          }
+          #stroke-14 {
             stroke: #4EB265;
+          }
+          #stroke-15 {
+            stroke: #F7F056;
+          }
+          #stroke-16 {
+            stroke: #F7CB45;
+          }
+          #stroke-17 {
+            stroke: #F4A736;
+          }
+          #stroke-18 {
+            stroke: #EE8026;
+          }
+          #stroke-19 {
+            stroke: #E65518;
+          }
+          #stroke-20 {
+            stroke: #DC050C;
+          }
+          #stroke-21 {
+            stroke: #A5170E;
+          }
+          #stroke-22 {
+            stroke: #72190E;
+          }
+          #stroke-23 {
+            stroke: #42150A;
           }
         ]]>
       </style>
