@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+if [ "$#" -lt 1 ]; then
+  echo "<kanji 離> [find|update <noteid>"
+  exit 1
+fi
+
+STAMP=$(date +%s)
 UNICODE=$(sqlite3 kanji.sqlite "select unicode from Kanji where literal='$1'")
 MEANING=$(sqlite3 kanji.sqlite "select meaning from Kanji where literal='$1'")
 ONYOMI=$(sqlite3 kanjidic.sqlite "select onyomi from Kanji where kanji='$1'")
@@ -10,57 +16,78 @@ sqlite3 kanji.sqlite "select drawing from Kanji where literal='$1'" > $SVG
 xsltproc -nonet kanjistyle.xslt $SVG > $STYLED
 convert -size 1024x1024 $STYLED anki.styled.png
 
-cat > anki.media.json <<- EOM
-{
-  "action": "storeMediaFile",
-  "version": 6,
-  "params": {
-    "filename": "${UNICODE}.png",
-    "data": "$(base64 anki.styled.png)"
+function storeMediaFile {
+  cat > anki.media.json <<- EOM
+  {
+    "action": "storeMediaFile",
+    "version": 6,
+    "params": {
+      "filename": "${UNICODE}-${STAMP}.png",
+      "data": "$(base64 anki.styled.png)"
+    }
   }
-}
 EOM
+  curl localhost:8765 -X POST --data @anki.media.json
+}
 
-curl localhost:8765 -X POST --data @anki.media.json
-
-cat > anki.strokes.json <<- EOM
-{
-  "action": "updateNoteFields",
-  "version": 6,
-  "params": {
-    "note": {
-      "id": ${NOTEID},
-      "fields": {
-        "strokes": "<img src=\"${UNICODE}.png\" />"
+case "$2" in
+  find)
+    cat > anki.media.json <<- EOM
+    {
+      "action": "findNotes",
+      "version": 6,
+      "params": {
+        "query": "deck:Japans::Kanji ${1}"
       }
     }
-  }
-}
 EOM
-
-cat > anki.add.json <<- EOM
-{
-  "action": "addNote",
-  "version": 6,
-  "params": {
-    "note": {
-      "deckName": "Japans::Kanji",
-      "modelName": "OnKanji",
-      "fields": {
-        "nederlands": "${MEANING}",
-        "kanji": "${1}",
-        "on": "${ONYOMI}",
-        "notes": "",
-        "strokes": "<img src=\"${UNICODE}.png\" />"
-      },
-      "options": {
-        "allowDuplicate": false
-      },
-      "tags": []
+    curl localhost:8765 -X POST --data @anki.media.json
+    ;;
+  update)
+    storeMediaFile
+    NOTEID=$3
+    cat > anki.strokes.json <<- EOM
+    {
+      "action": "updateNoteFields",
+      "version": 6,
+      "params": {
+        "note": {
+          "id": ${NOTEID},
+          "fields": {
+            "strokes": "<img src=\"${UNICODE}-${STAMP}.png\" />"
+          }
+        }
+      }
     }
-  }
-}
 EOM
+    curl localhost:8765 -X POST --data @anki.strokes.json
+    ;;
+  *)
+    storeMediaFile
+    cat > anki.add.json <<- EOM
+    {
+      "action": "addNote",
+      "version": 6,
+      "params": {
+        "note": {
+          "deckName": "Japans::Kanji",
+          "modelName": "OnKanji",
+          "fields": {
+            "nederlands": "${MEANING}",
+            "kanji": "${1}",
+            "on": "${ONYOMI}",
+            "notes": "",
+            "strokes": "<img src=\"${UNICODE}-${STAMP}.png\" />"
+          },
+          "options": {
+            "allowDuplicate": false
+          },
+          "tags": []
+        }
+      }
+    }
+EOM
+    curl localhost:8765 -X POST --data @anki.add.json
+esac
 
-curl localhost:8765 -X POST --data @anki.add.json
 # {"result": 1545055762607, "error": null}%
