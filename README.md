@@ -79,7 +79,8 @@ https://css-tricks.com/svg-line-animation-works/
     W    42150A
 
 
-## Anki
+## AnkiConnect
+https://foosoft.net/projects/anki-connect/
 
     REQUEST
     
