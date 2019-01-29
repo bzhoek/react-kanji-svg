@@ -9,6 +9,7 @@ STAMP=$(date +%s)
 UNICODE=$(sqlite3 kanji.sqlite "select unicode from Kanji where literal='$1'")
 MEANING=$(sqlite3 kanji.sqlite "select meaning from Kanji where literal='$1'")
 ONYOMI=$(sqlite3 kanjidic.sqlite "select onyomi from Kanji where kanji='$1'")
+KUNYOMI=$(sqlite3 kanjidic.sqlite "select kunyomi from Kanji where kanji='$1'")
 
 SVG='anki.kanji.svg'
 STYLED='anki.styled.svg'
@@ -76,6 +77,7 @@ EOM
             "nederlands": "${MEANING}",
             "kanji": "${1}",
             "on": "${ONYOMI}",
+            "kun": "${KUNYOMI}",
             "notes": "",
             "strokes": "<img src=\"${UNICODE}-${STAMP}.png\" />"
           },
