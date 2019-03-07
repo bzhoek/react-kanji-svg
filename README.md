@@ -1,4 +1,8 @@
-# Getting Started
+# Anki
+
+    $ brew cask install inkscape
+    $ brew upgrade imagemagick 6.9.3-0_1 -> 7.0.8-29
+    $ sh makeanki.sh 腕
 
 `yarn clean` - generate clean SVG files from https://github.com/KanjiVG/kanjivg
 
