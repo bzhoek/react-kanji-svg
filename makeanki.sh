@@ -14,7 +14,7 @@ KUNYOMI=$(sqlite3 kanjidic.sqlite "select kunyomi from Kanji where kanji='$1'")
 SVG='anki.kanji.svg'
 STYLED='anki.styled.svg'
 sqlite3 kanji.sqlite "select drawing from Kanji where literal='$1'" > $SVG
-xsltproc -nonet kanjistyle.xslt $SVG > $STYLED
+xsltproc -nonet anki.styled.xslt $SVG > $STYLED
 convert -size 1024x1024 $STYLED anki.styled.png
 
 function storeMediaFile {
