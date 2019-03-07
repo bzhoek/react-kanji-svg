@@ -102,7 +102,7 @@
           </xsl:attribute>
         </xsl:if>
         <xsl:attribute name="id">
-          <xsl:value-of select="concat('stroke-', string(..))"/>
+          <xsl:value-of select="concat('stroke-', count(.|preceding::path))"/>
         </xsl:attribute>
       </xsl:for-each>
       <xsl:apply-templates/>
