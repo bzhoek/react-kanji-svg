@@ -32,6 +32,35 @@ EOM
 }
 
 case "$2" in
+  replace)
+    cat > anki.media.json <<- EOM
+    {
+      "action": "findNotes",
+      "version": 6,
+      "params": {
+        "query": "deck:Japans::Kanji ${1}"
+      }
+    }
+EOM
+    NOTEID=$(curl localhost:8765 -X POST --data @anki.media.json | sed 's/.*\[\(.*\)\].*/\1/g')
+    echo $NOTEID
+    storeMediaFile
+    cat > anki.strokes.json <<- EOM
+    {
+      "action": "updateNoteFields",
+      "version": 6,
+      "params": {
+        "note": {
+          "id": ${NOTEID},
+          "fields": {
+            "strokes": "<img src=\"${UNICODE}-${STAMP}.png\" />"
+          }
+        }
+      }
+    }
+EOM
+    curl localhost:8765 -X POST --data @anki.strokes.json
+    ;;
   find)
     cat > anki.media.json <<- EOM
     {
@@ -42,7 +71,9 @@ case "$2" in
       }
     }
 EOM
-    curl localhost:8765 -X POST --data @anki.media.json
+    NOTEID=$(curl localhost:8765 -X POST --data @anki.media.json | sed 's/.*\[\(.*\)\].*/\1/g')
+#    curl localhost:8765 -X POST --data @anki.media.json
+    echo $NOTEID
     ;;
   update)
     storeMediaFile
@@ -77,7 +108,6 @@ EOM
             "nederlands": "${MEANING}",
             "kanji": "${1}",
             "on": "${ONYOMI}",
-            "kun": "${KUNYOMI}",
             "notes": "",
             "strokes": "<img src=\"${UNICODE}-${STAMP}.png\" />"
           },
